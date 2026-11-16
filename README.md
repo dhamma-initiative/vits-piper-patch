@@ -39,6 +39,21 @@ resolvable. `patchVersion` is monotonic and is what the app logs and reports.
 - Entries here win over the canonical dictionary and over the voice
   `customPhonemes`.
 
+## Lightweight verification first
+
+Do not publish to test a candidate. Use the scratch loop described in
+`dt.o-orchestration/docs/runbooks/PHONEME-TRIAGE.md`:
+
+```bash
+cd ~/dev/di-oc/dt.o-orchestration
+python3 scripts/try-phoneme.py penchant "pˈɛntʃˈɛnt"
+# open <dev-url>/?patch=/scratch/phoneme-patches.json&verbose=1#diagnostics
+```
+
+That writes a gitignored file, applies the same merge path as production, and
+needs no commit, version bump or release. Publish here only after the candidate
+is accepted in context.
+
 ## Workflow
 
 1. Add the defect to
