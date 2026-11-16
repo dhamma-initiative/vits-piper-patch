@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "patchVersion": "2026-11-17-01",
+  "base": {
+    "suttas": "261115",
+    "vits": "ver2-281109-projected2"
+  },
+  "english": {
+    "penchant": "pˈɛnt‍ʃˈant"
+  },
+  "pali": {},
+  "notes": [
+    "Live patch. Reset english/pali to {} after entries are promoted into the suttas dictionary or the voice customPhonemes."
+  ]
+}
