@@ -14,6 +14,7 @@ from pathlib import Path
 
 SUTTAS_VERSION = re.compile(r"^\d{6}$|^\d{4}\.\d{2}\.\d{2}$")
 IPA_OK = re.compile(r"^[^\s]+$")
+INVISIBLE = re.compile(r"[\u200b-\u200d\u2060\ufeff]")
 
 
 def fail(message: str) -> int:
@@ -49,6 +50,8 @@ def main(path: Path) -> int:
                 return fail(f"{language} key must be lower-case: {word}")
             if not isinstance(ipa, str) or not ipa.strip():
                 return fail(f"{language}.{word} has no IPA")
+            if INVISIBLE.search(word) or INVISIBLE.search(ipa):
+                return fail(f"{language}.{word} contains an invisible zero-width character")
             if not IPA_OK.match(ipa):
                 return fail(f"{language}.{word} IPA contains whitespace (words are synthesised as one token)")
 

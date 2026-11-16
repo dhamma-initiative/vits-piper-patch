@@ -31,6 +31,9 @@ resolvable. `patchVersion` is monotonic and is what the app logs and reports.
 ```
 
 - Keys are lower-case words; values are IPA for the voice.
+- Zero-width characters are rejected by CI: copy/paste from a spreadsheet can
+  embed U+200B–U+200D or U+FEFF, which the phonemizer drops and which make the
+  published value differ from the spoken one.
 - `base` is a guard. The app skips a patch whose base does not match the
   endpoints it loaded, and says so in Diagnostics and in the console.
 - Entries here win over the canonical dictionary and over the voice
