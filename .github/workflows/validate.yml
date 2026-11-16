@@ -1,0 +1,31 @@
+name: validate patch
+
+on:
+  push:
+    paths:
+      - "phoneme-patches.json"
+  pull_request:
+    paths:
+      - "phoneme-patches.json"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON contract
+        run: python3 scripts/validate-patch.py phoneme-patches.json
+      - name: Ensure the endpoint is reachable after deploy
+        if: github.ref == 'refs/heads/main'
+        run: |
+          for i in $(seq 1 12); do
+            body=$(curl -fsS "https://dhamma-initiative.github.io/vits-piper-patch/phoneme-patches.json?cb=$RANDOM" || true)
+            if echo "$body" | grep -q '"patchVersion"'; then
+              echo "$body" | python3 -c "import json,sys; d=json.load(sys.stdin); print('live:', d['patchVersion'])"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "patch endpoint did not become reachable" >&2
+          exit 1
