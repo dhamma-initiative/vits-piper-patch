@@ -1,15 +1,13 @@
 {
   "schemaVersion": 1,
-  "patchVersion": "2026-11-17-03",
+  "patchVersion": "2026-11-17-04",
   "base": {
     "suttas": "261115",
     "vits": "ver2-281109-projected2"
   },
-  "english": {
-    "penchant": "pˈɛntʃɛnt"
-  },
+  "english": {},
   "pali": {},
   "notes": [
-    "1 entries from phoneme-overrides-defects.csv"
+    "0 entries from phoneme-overrides-defects.csv"
   ]
 }
