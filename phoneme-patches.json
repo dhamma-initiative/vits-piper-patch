@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "patchVersion": "2026-11-17-02",
+  "patchVersion": "2026-11-17-03",
   "base": {
     "suttas": "261115",
     "vits": "ver2-281109-projected2"
   },
   "english": {
-    "penchant": "pˈɛntʃˈant"
+    "penchant": "pˈɛntʃɛnt"
   },
   "pali": {},
   "notes": [
